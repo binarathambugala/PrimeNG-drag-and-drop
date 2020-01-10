@@ -5,7 +5,7 @@
             <li *ngFor="let car of availableCars" class="ui-helper-clearfix" pDraggable="cars"
                 (onDragStart)="dragStart($event,car)" (onDragEnd)="dragEnd($event)">
                 <i class="fa fa-arrows fa-2x" style="float:right;margin-top:8px"></i>
-                <img src="assets/showcase/images/demo/car/{{car.brand}}.png" style="float:left" draggable="false">
+                <img src="https://raw.githubusercontent.com/binarathambugala/PrimeNG-drag-and-drop/master/src/app/assets/car/{{car.brand}}.png" style="float:left" draggable="false">
                 <div style="margin:8px 0 0 8px;float:left">{{car.vin}} - {{car.year}}</div>
             </li>
         </ul>
