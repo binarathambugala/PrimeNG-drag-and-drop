@@ -1,7 +1,6 @@
 import { Component } from "@angular/core";
 import { Sale } from "./domain/sale";
 import { Car } from "./domain/car";
-import { CarService } from "./services/car.service";
 
 @Component({
   selector: "my-app",
@@ -36,7 +35,7 @@ export class AppComponent {
 
   draggedCar: Car;
 
-  constructor(private carService: CarService) {}
+  constructor() {}
 
   ngOnInit() {
     this.sale1 = { id: 1, name: "Sale 1", cars: [] };
@@ -61,7 +60,6 @@ export class AppComponent {
       { brand: "Ford", year: 2000, color: "Black", vin: "h54hw5" },
       { brand: "Fiat", year: 2013, color: "Red", vin: "245t2s" }
     ];
-    // this.carService.getCarsSmall().then(cars => (this.availableCars = cars));
   }
 
   dragStart(event, car: Car) {

@@ -4,7 +4,6 @@ import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 
 import { AppComponent } from "./app.component";
-import { CarService } from "./services/car.service";
 
 import { CommonModule } from "@angular/common";
 import { DragDropModule } from "primeng/dragdrop";
@@ -27,6 +26,6 @@ import { CodeHighlighterModule } from "primeng/codehighlighter";
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent],
-  providers: [CarService]
+  providers: []
 })
 export class AppModule {}
