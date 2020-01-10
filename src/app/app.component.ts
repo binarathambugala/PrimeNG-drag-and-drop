@@ -1,40 +1,53 @@
 import { Component } from "@angular/core";
+import { Sale } from "./domain/sale";
 import { Car } from "./domain/car";
 import { CarService } from "./services/car.service";
 
 @Component({
   selector: "my-app",
   templateUrl: "./app.component.html",
-   styles: [`
-        :host ::ng-deep .drag-column {
-            padding-right: .5em;
-        }
+  styles: [
+    `
+      :host ::ng-deep .drag-column {
+        padding-right: 0.5em;
+      }
 
-        :host ::ng-deep .drop-column {
-            border: 1px solid #c8c8c8;
-            background-color: #ffffff;
-        }
+      :host ::ng-deep .drop-column {
+        border: 1px solid #c8c8c8;
+        background-color: #ffffff;
+      }
 
-        .ui-g li {
-            list-style-type: none;
-            padding: 10px;
-            margin-bottom: 5px;
-            border: 1px solid #c8c8c8;
-            background-color: #ffffff;
-        }
-    `]
+      .ui-g li {
+        list-style-type: none;
+        padding: 10px;
+        margin-bottom: 5px;
+        border: 1px solid #c8c8c8;
+        background-color: #ffffff;
+      }
+    `
+  ]
 })
 export class AppComponent {
-  availableCars: Car[];
+  sale1: Sale;
+  sale2: Sale;
+  sales: Sale[];
 
-  selectedCars: Car[];
+  availableCars: Car[];
 
   draggedCar: Car;
 
   constructor(private carService: CarService) {}
 
   ngOnInit() {
-    this.selectedCars = [];
+    this.sale1 = { id: 1, name: "Sale 1", cars: [] };
+    this.sale2 = { id: 2, name: "Sale 2", cars: [] };
+    this.sales = [];
+
+    let sale3: Sale = { id: 3, name: "Sale 3", cars: [] = [] };
+    let sale4: Sale = { id: 4, name: "Sale 4", cars: [] = [] };
+    let sale5: Sale = { id: 4, name: "Sale 5", cars: [] = [] };
+
+    this.sales = [sale3, sale4, sale5];
 
     this.availableCars = [
       { brand: "VW", year: 2012, color: "Orange", vin: "dsad231ff" },
@@ -55,10 +68,10 @@ export class AppComponent {
     this.draggedCar = car;
   }
 
-  drop(event) {
+  drop(event, sale: Sale) {
     if (this.draggedCar) {
       let draggedCarIndex = this.findIndex(this.draggedCar);
-      this.selectedCars = [...this.selectedCars, this.draggedCar];
+      sale.cars = [...sale.cars, this.draggedCar];
       this.availableCars = this.availableCars.filter(
         (val, i) => i != draggedCarIndex
       );
@@ -79,5 +92,9 @@ export class AppComponent {
       }
     }
     return index;
+  }
+
+  getSales() {
+    return this.sales;
   }
 }
