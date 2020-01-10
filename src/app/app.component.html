@@ -1,4 +1,34 @@
-<hello name="{{ name }}"></hello>
-<p>
-  Start editing to see some magic happen :)
-</p>
+<h3>Drag and Drop to Table</h3>
+<div class="ui-g">
+    <div class="ui-g-12 ui-md-6 ui-g-nopad drag-column">
+        <ul style="margin:0;padding:0">
+            <li *ngFor="let car of availableCars" class="ui-helper-clearfix" pDraggable="cars"
+                (onDragStart)="dragStart($event,car)" (onDragEnd)="dragEnd($event)">
+                <i class="fa fa-arrows fa-2x" style="float:right;margin-top:8px"></i>
+                <img src="assets/showcase/images/demo/car/{{car.brand}}.png" style="float:left" draggable="false">
+                <div style="margin:8px 0 0 8px;float:left">{{car.vin}} - {{car.year}}</div>
+            </li>
+        </ul>
+    </div>
+    <div class="ui-g-12 ui-md-6 drop-column" pDroppable="cars" 
+        (onDrop)="drop($event)" [ngClass]="{'ui-highlight-car':draggedCar}">
+        <p-table [value]="selectedCars">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Vin</th>
+                    <th>Year</th>
+                    <th>Brand</th>
+                    <th>Color</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-car>
+                <tr>
+                    <td>{{car.vin}}</td>
+                    <td>{{car.year}}</td>
+                    <td>{{car.brand}}</td>
+                    <td>{{car.color}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>

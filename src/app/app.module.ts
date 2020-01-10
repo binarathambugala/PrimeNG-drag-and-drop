@@ -1,13 +1,32 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { FormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
 
-import { AppComponent } from './app.component';
-import { HelloComponent } from './hello.component';
+import { AppComponent } from "./app.component";
+import { CarService } from "./services/car.service";
+
+import { CommonModule } from "@angular/common";
+import { DragDropModule } from "primeng/dragdrop";
+import { PanelModule } from "primeng/panel";
+import { TableModule } from "primeng/table";
+import { TabViewModule } from "primeng/tabview";
+import { CodeHighlighterModule } from "primeng/codehighlighter";
 
 @NgModule({
-  imports:      [ BrowserModule, FormsModule ],
-  declarations: [ AppComponent, HelloComponent ],
-  bootstrap:    [ AppComponent ]
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    CommonModule,
+    DragDropModule,
+    PanelModule,
+    TableModule,
+    TabViewModule,
+    CodeHighlighterModule
+  ],
+  declarations: [AppComponent],
+  bootstrap: [AppComponent],
+  providers: [CarService]
 })
-export class AppModule { }
+export class AppModule {}
